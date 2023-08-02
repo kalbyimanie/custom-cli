@@ -143,3 +143,9 @@ topics:
   - name: "faz"
     replication_factor : 1
     partition_size : 1
+  - name: "faz1"
+    replication_factor : 1
+    partition_size : 1
+  - name: "faz123"
+    replication_factor : 1
+    partition_size : 1
