@@ -144,7 +144,7 @@ func createTopic(cmd *cobra.Command, args []string) error {
 	var broker_config_host string
 	var broker_config_port string
 	var broker_connection []string
-	// Access individual configuration values
+
 	for _, broker_config := range config.BrokerConfig {
 		broker_config_host = broker_config.Host
 		broker_config_port = broker_config.Port
