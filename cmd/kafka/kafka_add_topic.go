@@ -162,7 +162,7 @@ func createTopic(cmd *cobra.Command, args []string) error {
 	admin, err := sarama.NewClusterAdmin(broker_connection, kafkaConfig)
 
 	if err != nil {
-		panic(fmt.Errorf("failed to connect to Kafka: %s\n\n", err))
+		panic(fmt.Errorf("failed to connect to Kafka: %s\n\n", broker_connection))
 	}
 	defer admin.Close()
 
