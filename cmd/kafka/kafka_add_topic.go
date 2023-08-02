@@ -210,10 +210,10 @@ func createTopic(cmd *cobra.Command, args []string) error {
 	// NOTE close once all the process signal have been received
 	close(done)
 
-	// NOTE Wait for the main goroutine to receive all done signals
-	for i := 0; i < len(flag); i++ {
-		<-done
-	}
+	// REVIEW Wait for the main goroutine to receive all done signals
+	// for i := 0; i < len(flag); i++ {
+	// 	<-done
+	// }
 
 	return nil
 }
