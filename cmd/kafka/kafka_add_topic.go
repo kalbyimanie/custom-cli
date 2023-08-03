@@ -196,42 +196,40 @@ func createTopic(cmd *cobra.Command, args []string) error {
 
 	var wg sync.WaitGroup
 
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	// NOTE Create a channel to signal the main goroutine when processing is done
 	done := make(chan struct{}, len(flag))
-	total_topic := make(chan int)
+	timer := time.Now()
 
 	// NOTE create topic
 	for _, topic_config := range configTopic.Topics {
 		// NOTE process counter and increment the counter by 1
 		wg.Add(1)
 		// NOTE start processing
-		go processingTopic(ctx, topic_config.Name, topic_config.ReplicationFactor, topic_config.PartitionSize, admin, &wg, done, total_topic)
+		go processingTopic(topic_config.Name, topic_config.ReplicationFactor, topic_config.PartitionSize, admin, &wg)
 	}
 	// NOTE wait until each process finished
-	wg.Wait()
-
-	// NOTE close once all the process signal have been received
-	close(done)
+	go func() {
+		wg.Wait()
+		done <- struct{}{}
+	}()
 
 	select {
 	case <-done:
-		fmt.Printf("\n[TOTAL LISTED TOPICS: %d]\n", <-total_topic)
+		elapsed := time.Since(timer)
+		fmt.Printf("\ntime elapsed: %v\n", elapsed)
 	case <-ctx.Done():
 		fmt.Println("timed out")
 	}
-
-	// REVIEW Wait for the main goroutine to receive all done signals
-	for i := 0; i < len(flag); i++ {
-		<-done
-	}
+	close(done)
 
 	return nil
 }
 
-func processingTopic(ctx context.Context, t string, r int16, p int32, admin sarama.ClusterAdmin, wg *sync.WaitGroup, done chan struct{}, total chan int) {
+func processingTopic(t string, r int16, p int32, admin sarama.ClusterAdmin, wg *sync.WaitGroup) {
+	defer wg.Done()
 	var err error
 	err = admin.CreateTopic(t, &sarama.TopicDetail{
 		NumPartitions:     p,
@@ -242,21 +240,6 @@ func processingTopic(ctx context.Context, t string, r int16, p int32, admin sara
 		log.Printf("Topic '%s' has already been created.\n", err)
 	} else {
 		log.Printf("Topic '%s' created successfully.\n", t)
-	}
-	select {
-	case done <- struct{}{}:
-		counter := 0
-		go func() {
-			for {
-				counter = <-total
-				counter++
-				total <- counter
-			}
-		}()
-		total <- 0
-		wg.Done()
-	case <-ctx.Done():
-		close(done)
 	}
 }
 

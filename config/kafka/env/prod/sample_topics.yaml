@@ -1,0 +1,10 @@
+topics:
+  - name: "a"
+    replication_factor : 1
+    partition_size : 1
+  - name: "b"
+    replication_factor : 1
+    partition_size : 1
+  - name: "c"
+    replication_factor : 1
+    partition_size : 1
