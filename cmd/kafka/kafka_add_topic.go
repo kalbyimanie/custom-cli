@@ -196,7 +196,7 @@ func createTopic(cmd *cobra.Command, args []string) error {
 
 	var wg sync.WaitGroup
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
 	defer cancel()
 
 	// NOTE Create a channel to signal the main goroutine when processing is done
