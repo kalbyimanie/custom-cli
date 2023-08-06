@@ -200,7 +200,7 @@ func createTopic(cmd *cobra.Command, args []string) error {
 	defer cancel()
 
 	// NOTE Create a channel to signal the main goroutine when processing is done
-	done := make(chan struct{}, len(flag))
+	done := make(chan struct{})
 	timer := time.Now()
 
 	// NOTE create topic
