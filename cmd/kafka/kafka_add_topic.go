@@ -196,7 +196,7 @@ func createTopic(cmd *cobra.Command, args []string) error {
 
 	var wg sync.WaitGroup
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 	defer cancel()
 
 	// NOTE Create a channel to signal the main goroutine when processing is done
@@ -204,7 +204,9 @@ func createTopic(cmd *cobra.Command, args []string) error {
 	timer := time.Now()
 
 	// NOTE create topic
+	var total_topics []string
 	for _, topic_config := range configTopic.Topics {
+		total_topics = append(total_topics, topic_config.Name)
 		// NOTE process counter and increment the counter by 1
 		wg.Add(1)
 		// NOTE start processing
@@ -219,8 +221,10 @@ func createTopic(cmd *cobra.Command, args []string) error {
 	select {
 	case <-done:
 		elapsed := time.Since(timer)
-		fmt.Printf("\ntime elapsed: %v\n", elapsed)
+		fmt.Printf("\ntotal listed topics : %d\n", len(total_topics))
+		fmt.Printf("time elapsed: %v\n", elapsed)
 	case <-ctx.Done():
+		fmt.Printf("\ntotal listed topics : %d\n", len(total_topics))
 		fmt.Println("timed out")
 	}
 	close(done)
