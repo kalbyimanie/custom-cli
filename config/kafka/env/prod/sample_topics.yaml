@@ -1,10 +1,200 @@
-topics:
-  - name: "a"
+topics: #required map
+  - name: cCuVxKx1kH
     replication_factor : 1
     partition_size : 1
-  - name: "b"
+
+  - name: 0NpjCGWKnm
     replication_factor : 1
     partition_size : 1
-  - name: "c"
+
+  - name: W2M0S0jzgS
+    replication_factor : 1
+    partition_size : 1
+
+  - name: XARUFB7ukF
+    replication_factor : 1
+    partition_size : 1
+
+  - name: ScAV62Mzg9
+    replication_factor : 1
+    partition_size : 1
+
+  - name: yGMpPUfw5d
+    replication_factor : 1
+    partition_size : 1
+
+  - name: rjGPWquujG
+    replication_factor : 1
+    partition_size : 1
+
+  - name: NQfav4IRQU
+    replication_factor : 1
+    partition_size : 1
+
+  - name: GYTczRGEpT
+    replication_factor : 1
+    partition_size : 1
+
+  - name: rsQ8g0hXjD
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 63g8JGNZeJ
+    replication_factor : 1
+    partition_size : 1
+
+  - name: YThtImzYdd
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 5FMGegr9Jp
+    replication_factor : 1
+    partition_size : 1
+
+  - name: t017LuSiMy
+    replication_factor : 1
+    partition_size : 1
+
+  - name: HzHLCyBDcl
+    replication_factor : 1
+    partition_size : 1
+
+  - name: WgmKChOyG5
+    replication_factor : 1
+    partition_size : 1
+
+  - name: Od3fJlPpIv
+    replication_factor : 1
+    partition_size : 1
+
+  - name: yE6yPAYUga
+    replication_factor : 1
+    partition_size : 1
+
+  - name: RDErs17qnS
+    replication_factor : 1
+    partition_size : 1
+
+  - name: mE6sJ47XMy
+    replication_factor : 1
+    partition_size : 1
+
+  - name: swiJFwMjCg
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 4vMBc1DGn2
+    replication_factor : 1
+    partition_size : 1
+
+  - name: fo36wyrMC2
+    replication_factor : 1
+    partition_size : 1
+
+  - name: FcUT4oa476
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 7Nny86W0wN
+    replication_factor : 1
+    partition_size : 1
+
+  - name: VpJmKibevy
+    replication_factor : 1
+    partition_size : 1
+
+  - name: MexILeJbYx
+    replication_factor : 1
+    partition_size : 1
+
+  - name: E2YZTX2APn
+    replication_factor : 1
+    partition_size : 1
+
+  - name: K94sRJkPDe
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 3Rtp4wc1tW
+    replication_factor : 1
+    partition_size : 1
+
+  - name: DMG1FkEFbO
+    replication_factor : 1
+    partition_size : 1
+
+  - name: KcG3OrxR6V
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 05f10IaLWb
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 23EJejWGX9
+    replication_factor : 1
+    partition_size : 1
+
+  - name: SAb2E4SPAT
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 4KyofAtQro
+    replication_factor : 1
+    partition_size : 1
+
+  - name: vrmQ0plJR1
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 2iOeFO11z4
+    replication_factor : 1
+    partition_size : 1
+
+  - name: 4JgRAP8e1y
+    replication_factor : 1
+    partition_size : 1
+
+  - name: nW332Jc4vr
+    replication_factor : 1
+    partition_size : 1
+
+  - name: UmesuneEYn
+    replication_factor : 1
+    partition_size : 1
+
+  - name: UInQnWk74s
+    replication_factor : 1
+    partition_size : 1
+
+  - name: L6r76PtIUb
+    replication_factor : 1
+    partition_size : 1
+
+  - name: X5jcLkYFiV
+    replication_factor : 1
+    partition_size : 1
+
+  - name: zGjCMp3zeh
+    replication_factor : 1
+    partition_size : 1
+
+  - name: HWpTeyG3Pd
+    replication_factor : 1
+    partition_size : 1
+
+  - name: p3vBCSMc8u
+    replication_factor : 1
+    partition_size : 1
+
+  - name: zqMGlQvVJy
+    replication_factor : 1
+    partition_size : 1
+
+  - name: xiAz9VrA1n
+    replication_factor : 1
+    partition_size : 1
+
+  - name: F2f1OukJ5b
     replication_factor : 1
     partition_size : 1

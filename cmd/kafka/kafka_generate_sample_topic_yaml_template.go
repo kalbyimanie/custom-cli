@@ -7,11 +7,24 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"
 )
+
+type FlagGenerator struct {
+	OutputYamlFile   string
+	TemplateYamlFile string
+	NumberOfTopics   string
+}
+
+var flagGenerator = FlagGenerator{
+	OutputYamlFile:   "output_yaml_file",
+	TemplateYamlFile: "template_yaml_file",
+	NumberOfTopics:   "num_of_topics",
+}
 
 type SampleTopic struct {
 	Topic_name         string
@@ -36,15 +49,15 @@ func generateRandomString(length int) string {
 	return string(result)
 }
 
-func appendToYAML(filename string, data SampleTopic) error {
+func appendToYAML(templateFileName string, filename string, data SampleTopic) error {
 	// Read the existing content of the YAML file
 	existingContent, err := ioutil.ReadFile(filename)
 	if err != nil {
+		fmt.Printf("\n\n[ERROR]: Output file needs to be exist to append\n")
 		return err
 	}
 
-	// template file
-	templateFile, err := os.ReadFile("./template/kafka/topic.yaml")
+	templateFile, err := os.ReadFile(templateFileName)
 	if err != nil {
 		fmt.Println("Error reading template:", err)
 		return err
@@ -80,15 +93,29 @@ func appendToYAML(filename string, data SampleTopic) error {
 }
 
 func generateTemplate(cmd *cobra.Command, args []string) error {
-	yamlFilename := "/Users/kalbyimanie/Documents/personal/repositories/custom-cli/config/kafka/env/prod/hotel_topics.yaml"
 
-	for i := 0; i < 900; i++ {
+	template_yaml_file, _ := cmd.Flags().GetString(flagGenerator.TemplateYamlFile)
+
+	output_yaml_file, _ := cmd.Flags().GetString(flagGenerator.OutputYamlFile)
+
+	num_of_topics, _ := cmd.Flags().GetString(flagGenerator.NumberOfTopics)
+
+	num_of_topics_to_int, err := strconv.Atoi(num_of_topics)
+
+	if err != nil {
+		fmt.Println("Error during conversion")
+		return err
+	}
+
+	outputYamlFilename := string(output_yaml_file)
+
+	for i := 0; i < num_of_topics_to_int; i++ {
 		rand.Seed(time.Now().UnixNano())
 		randomString := generateRandomString(10) //
 
 		topic_data := SampleTopic{Topic_name: randomString, Replication_factor: 1, Partition_size: 1}
 
-		err := appendToYAML(yamlFilename, topic_data)
+		err := appendToYAML(template_yaml_file, outputYamlFilename, topic_data)
 		if err != nil {
 			fmt.Println("Error:", err)
 			return err
@@ -97,7 +124,7 @@ func generateTemplate(cmd *cobra.Command, args []string) error {
 		autoFormatYAML(topic_data)
 	}
 
-	fmt.Println("Template appended to", yamlFilename)
+	fmt.Println("Template appended to", outputYamlFilename)
 
 	return nil
 }
@@ -110,5 +137,12 @@ var generateSampleTopicYaml = &cobra.Command{
 }
 
 func init() {
+
+	generateSampleTopicYaml.Flags().String(flagGenerator.OutputYamlFile, "", "output yaml file")
+
+	generateSampleTopicYaml.Flags().String(flagGenerator.TemplateYamlFile, "./template/kafka/topic.yaml", "template yaml file")
+
+	generateSampleTopicYaml.Flags().String(flagGenerator.NumberOfTopics, "", "yaml file path")
+
 	Topic.AddCommand(generateSampleTopicYaml)
 }
