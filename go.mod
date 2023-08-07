@@ -6,6 +6,7 @@ require (
 	github.com/IBM/sarama v1.40.1
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.16.0
+	gopkg.in/yaml.v2 v2.2.2
 )
 
 require (

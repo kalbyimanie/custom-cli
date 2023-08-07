@@ -1,0 +1,4 @@
+
+  - name: {{.Topic_name}}
+    replication_factor : {{ .Replication_factor }}
+    partition_size : {{ .Partition_size }}
