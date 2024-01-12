@@ -7,15 +7,17 @@ import (
 )
 
 // command variable needs to be exported
-var helloCmd = &cobra.Command{
-	Use:   "hello", // camelCase
-	Short: "hello",
+var printName = &cobra.Command{
+	Use:   "printName", // camelCase
+	Short: "printName",
 	Run: func(cmd *cobra.Command, args []string) {
 		// If no subcommand is provided, print help
-		fmt.Println("hello cmd")
+		name, _ := cmd.Flags().GetString("name")
+		fmt.Printf("Hi There %s !\n", name)
 	},
 }
 
 func init() {
-	HelloCmd.AddCommand(helloCmd)
+	printName.Flags().String("name", "", "")
+	HelloCmd.AddCommand(printName)
 }
