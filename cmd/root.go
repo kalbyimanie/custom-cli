@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"custom-cli/cmd/jenkins"
 	"custom-cli/cmd/kafka"
 	"custom-cli/cmd/network"
 	"fmt"
@@ -23,6 +24,7 @@ func init() {
 	rootCmd.AddCommand(network.NetworkCmd)
 	rootCmd.AddCommand(network.HelloCmd)
 	rootCmd.AddCommand(kafka.Topic)
+	rootCmd.AddCommand(jenkins.JenkinsCmd)
 }
 
 // Execute runs the root command

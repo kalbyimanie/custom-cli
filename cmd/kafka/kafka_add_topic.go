@@ -249,7 +249,7 @@ func processingTopic(t string, r int16, p int32, admin sarama.ClusterAdmin, wg *
 
 // NOTE command definitions
 var createTopicCmd = &cobra.Command{
-	Use:   "create", // camelCase
+	Use:   "create-topic", // camelCase
 	Short: "",
 	RunE:  createTopic,
 }
